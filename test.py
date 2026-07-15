@@ -16,9 +16,9 @@ class Basic:
         self._initialize_()
 
     def _initialize_(self):
-        self.displayDataFrame()
-
-    def convertLabelForm(self):
+        self.setDataFrameStyle()
+    
+    def convertLabelsForm(self):
         label = {
             0: "Extremely Weak",
             1: "Weak",
@@ -35,28 +35,18 @@ class Basic:
         converted = self.data
         return converted
 
-    def displayDataFrame(self):
-        converted = self.convertLabelForm()
-        return(converted.head(10).style.hide(axis = "index")
-                .set_properties(**{
-                    "background-color": "white",
-                    "color"           : "black",
-                    "border"          : "1px solid gray",
-                    "text-align"      : "left",
-                    "font-family"     : "'Sarasa Term SC Nerd', sans-serif"
-                })
-                .set_table_styles([{
-                    "selector"        : "",
-                    "props"           : [ 
-                        ("import", "url('https://cdn.jsdelivr.net/gh/oraant/sarasa-gothic-webfonts@v1.0.0/css/sarasa-term-sc.css')") 
-                     ]
-                },{
-                    "selector"        : "th",
-                    "props"           : [
-                        ("text-align", "center"), ("background-color", "black"), ("color", "white"), ("fony-family", "'Sarasa Term SC Nerd', sans-seriff")
-                    ]
-                }])
+    def setDataFrameStyle(self):
+        stylesheet = (self.convertLabelsForm().head(10).style.hide(axis = "index")
+                        .set_properties(**{
+                            "background-color": "white",
+                            "color"           : "black",
+                            "border"          : "1px solid gray",
+                            "text-align"      : "left",
+                            "font-family"     : "'Sarasa Term SC Nerd', sans-serif"
+                        })
+
         )
+        display(stylesheet)
         
 
 if __name__ == "__main__":
