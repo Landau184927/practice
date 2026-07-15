@@ -1,7 +1,7 @@
 # Module Decaration:
 import pandas
 #import matplotlib.pyplot                                   as plt
-from colorama                import Fore, Back, init
+from colorama                import Fore, init
 from IPython.display         import display
 from sklearn.metrics         import accuracy_score         as acc
 from sklearn.model_selection import train_test_split       as tts
@@ -37,19 +37,10 @@ class Basic:
         return converted
 
     def setDataFrameStyle(self): # Set the Output Data Frame Style:
-        stylesheet = (self.convertLabelsForm().head(10).style.hide(axis = "index")
-                        #.set_properties(**{
-                        #   "border"     : "1px solid gray",
-                        #    "text-align" : "left",
-                        #})
-                        .set_table_styles([{
-                            "selector"   : "th.col_heading.level0",
-                            "props"      : [ ("text-align", "right") ]
-                        }])
-        )
-        # (!) Change the Font
+        stylesheet = (self.convertLabelsForm().head(10).style.hide(axis = "index"))
         print(Fore.GREEN + "Notice:", Fore.RESET + "The following shows a sample (10 rows) of BMI data for 500 people.")
         display(stylesheet)
+        # [!] Modify the Style
         
 if __name__ == "__main__":
     URL = "https://raw.githubusercontent.com/chriswmann/datasets/master/500_Person_Gender_Height_Weight_Index.csv"
