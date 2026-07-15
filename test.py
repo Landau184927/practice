@@ -12,7 +12,7 @@ from sklearn.ensemble        import RandomForestClassifier as RFC
 
 class Basic:
     def __init__(self, URL):
-        self.data = pandas.read_csv(URL, index_col = 'Index')
+        self.data = pandas.read_csv(URL)
         self._initialize_()
 
     def _initialize_(self):
