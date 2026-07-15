@@ -10,14 +10,6 @@ from sklearn.neighbors       import KNeighborsClassifier   as KNC
 from sklearn.tree            import DecisionTreeClassifier as DTC
 from sklearn.ensemble        import RandomForestClassifier as RFC
 
-class Color:
-    Red    = Fore.RED
-    Yellow = Fore.YELLOW
-    Green  = Fore.GREEN
-    Blue   = Fore.BLUE
-    Reset  = Fore.RESET
-R, Y, G, B, X = Color()
-
 class Basic:
     def __init__(self, URL: str):
         init(autoreset = True, strip = False, convert = False)
@@ -48,14 +40,14 @@ class Basic:
         conversion = self.convertLabelFormat()
         stylesheet = (conversion.head(10).style.hide(axis = "index"))
         # MESSAGE:
-        print(f"The following shows a sample {G}(10 rows){X} of BMI data for 500 people:")
+        print(f"The following shows a sample {Fore.GREEN}(10 rows){Fore.RESET} of BMI data for 500 people:")
         print(f"Here, each label string has been replaced from original as follows:")
-        print(f"{R}0{X}: {G}Extremely Weak")
-        print(f"{R}1{X}: {G}Weak")
-        print(f"{R}2{X}: {G}Normal")
-        print(f"{R}3{X}: {G}Overweight")
-        print(f"{R}4{X}: {G}Obesity")
-        print(f"{R}5{X}: {G}Extreme Obesity")
+        print(f"{Fore.RED}0{Fore.RESET}: {Fore.GREEN}Extremely Weak")
+        print(f"{Fore.RED}1{Fore.RESET}: {Fore.GREEN}Weak")
+        print(f"{Fore.RED}2{Fore.RESET}: {Fore.GREEN}Normal")
+        print(f"{Fore.RED}3{Fore.RESET}: {Fore.GREEN}Overweight")
+        print(f"{Fore.RED}4{Fore.RESET}: {Fore.GREEN}Obesity")
+        print(f"{Fore.RED}5{Fore.RESET}: {Fore.GREEN}Extreme Obesity")
         display(stylesheet)
         #TODO
 
