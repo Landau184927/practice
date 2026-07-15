@@ -18,7 +18,7 @@ class Basic:
     def _initialize_(self):
         self.setDataFrameStyle()
     
-    def convertLabelsForm(self):
+    def convertLabelsForm(self): # Convert Numerical Labels to String Format:
         label = {
             0: "Extremely Weak",
             1: "Weak",
@@ -35,20 +35,20 @@ class Basic:
         converted = self.data
         return converted
 
-    def setDataFrameStyle(self):
+    def setDataFrameStyle(self): # Set the Output Data Frame Style:
         stylesheet = (self.convertLabelsForm().head(10).style.hide(axis = "index")
-                        .set_properties(**{
-                            "background-color": "white",
-                            "color"           : "black",
-                            "border"          : "1px solid gray",
-                            "text-align"      : "left",
-                            "font-family"     : "'Sarasa Term SC Nerd', sans-serif"
-                        })
-
+                        #.set_properties(**{
+                        #   "border"     : "1px solid gray",
+                        #    "text-align" : "left",
+                        #})
+                        .set_table_styles([{
+                            "selector"   : "th.col_heading.level0",
+                            "props"      : [ ("text-align", "right") ]
+                        }])
         )
+        # (!) Change the Font
         display(stylesheet)
         
-
 if __name__ == "__main__":
     URL = "https://raw.githubusercontent.com/chriswmann/datasets/master/500_Person_Gender_Height_Weight_Index.csv"
     task = Basic(URL)
