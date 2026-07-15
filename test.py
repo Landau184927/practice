@@ -13,45 +13,19 @@ from sklearn.ensemble        import RandomForestClassifier as RFC
 
 # region "Utility Class"
 class Utility:
-    @staticmethod
-    def parseEntryPointArg():
-        parser = argparse.ArgumentParser(description = " ")
-        parser.add_argument('verbose', type = int, nargs = '?', default = 1, help = "Set verbosity (0 or 1)")
-        args, unknown = parser.parse_known_args()
-        return args
-    
-args = Utility.parseEntryPointArg()
+    pass
 # endregion
 
 class Basic:
-    def __init__(self, verbose: bool):
+    def __init__(self):
         init(autoreset = True, strip = False, convert = False)
-        self.switchA = False
-        self.data    = pandas.read_csv("https://raw.githubusercontent.com/chriswmann/datasets/master/500_Person_Gender_Height_Weight_Index.csv")
+        self.data = pandas.read_csv("https://raw.githubusercontent.com/chriswmann/datasets/master/500_Person_Gender_Height_Weight_Index.csv")
         self._initialize_(verbose)
 
-    def _initialize_(self, verbose):
-        self.switchDescriptions(verbose)
+    def _initialize_(self):
+        self.switchDescriptions()
         self.setDataFrameStyles()
 
-    def switchDescriptions(self, verbose): # NOTE: Switch the Verbosity of Explanation:
-        if not isinstance(verbose, (bool, int)):
-            raise TypeError(f"Invalid system argument: {verbose}")
-            sys.exit(1)
-        if verbose in (1, True):
-            self.switchA = True
-        else:
-            self.switchA = False
-        return
-
-
-        #match verbose:
-        #    case (1, True) :
-        #        self.switchA = True
-        #    case _:
-        #        self.switchA = False
-        return
-    
     def convertLabelFormat(self): # NOTE: Convert Numerical Labels to String Format:
         label = {
             0: "Extremely Weak",
@@ -78,19 +52,15 @@ class Basic:
         stylesheets = (data.head(10).style.hide(axis = "index"))
         # MESSAGE:
         print(f"The following shows a sample {Fore.GREEN}(10 rows){Fore.RESET} of BMI data for 500 people.")
-        match self.switchA:
-            case True:
-                print(f"Here, each label string has been replaced from original as follows:\n")
-                for code, text in label.items():
-                    print(f"  {Fore.RED}{code}{Fore.RESET}: {text}")
-            case False:
-                pass
+        print(f"Here, each label string has been replaced from original as follows:\n")
+        for code, text in label.items():
+            print(f"  {Fore.RED}{code}{Fore.RESET}: {text}")
         display(stylesheets)
         #TODO
 
     #def extractDataSummary(self): # NOTE: Extract Various Metadata from Data:
 
 if __name__ == "__main__":
-    task = Basic(args.verbose)
+    task = Basic()
 
     
