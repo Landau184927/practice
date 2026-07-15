@@ -41,13 +41,13 @@ class Basic:
         stylesheet = (conversion.head(10).style.hide(axis = "index"))
         # MESSAGE:
         print(f"The following shows a sample {Fore.GREEN}(10 rows){Fore.RESET} of BMI data for 500 people:")
-        print(f"Here, each label string has been replaced from original as follows:")
-        print(f"{Fore.RED}0{Fore.RESET}: {Fore.GREEN}Extremely Weak")
-        print(f"{Fore.RED}1{Fore.RESET}: {Fore.GREEN}Weak")
-        print(f"{Fore.RED}2{Fore.RESET}: {Fore.GREEN}Normal")
-        print(f"{Fore.RED}3{Fore.RESET}: {Fore.GREEN}Overweight")
-        print(f"{Fore.RED}4{Fore.RESET}: {Fore.GREEN}Obesity")
-        print(f"{Fore.RED}5{Fore.RESET}: {Fore.GREEN}Extreme Obesity")
+        print(f"Here, each label string has been replaced from original as follows:\n")
+        print(f"    {Fore.RED}0{Fore.RESET}: Extremely Weak")
+        print(f"    {Fore.RED}1{Fore.RESET}: Weak")
+        print(f"    {Fore.RED}2{Fore.RESET}: Normal")
+        print(f"    {Fore.RED}3{Fore.RESET}: Overweight")
+        print(f"    {Fore.RED}4{Fore.RESET}: Obesity")
+        print(f"    {Fore.RED}5{Fore.RESET}: Extreme Obesity")
         display(stylesheet)
         #TODO
 
