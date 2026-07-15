@@ -15,10 +15,10 @@ class Basic:
         init(autoreset = True, strip = False, convert = False)
         self.switchA = False
         self.data    = pandas.read_csv(URL)
-        self._initialize_()
+        self._initialize_(verbose)
 
-    def _initialize_(self):
-        self.switchDescriptions()
+    def _initialize_(self, verbose):
+        self.switchDescriptions(verbose)
         self.setDataFrameStyles()
 
     def switchDescriptions(self, verbose): # NOTE: Switch the Verbosity of Explanation:
