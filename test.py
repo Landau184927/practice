@@ -38,11 +38,18 @@ class Basic:
         if not isinstance(verbose, (bool, int)):
             raise TypeError(f"Invalid system argument: {verbose}")
             sys.exit(1)
-        match verbose:
-            case (1, True) :
-                self.switchA = True
-            case _:
-                self.switchA = False
+        if verbose in (1, True):
+            self.switchA = True
+        else:
+            self.switchA = False
+        return
+
+
+        #match verbose:
+        #    case (1, True) :
+        #        self.switchA = True
+        #    case _:
+        #        self.switchA = False
         return
     
     def convertLabelFormat(self): # NOTE: Convert Numerical Labels to String Format:
