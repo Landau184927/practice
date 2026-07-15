@@ -25,6 +25,9 @@ class Basic:
     def _initialize_(self):
         self.setDataFrameStyles()
 
+        self.extractDataSummary()
+        self.illustrateEDATable()
+
     def convertLabelFormat(self): # NOTE: Convert Numerical Labels to String Format:
         label = {
             0: "Extremely Weak",
@@ -45,15 +48,43 @@ class Basic:
     def setDataFrameStyles(self): # NOTE: Set the Output Data Frame Style
         label, data = self.convertLabelFormat()
         stylesheets = (data.head(10).style.hide(axis = "index"))
+        #
         # MESSAGE:
         print(f"The following shows a sample {Fore.GREEN}(10 rows){Fore.RESET} of BMI data for 500 people.")
         print(f"Here, each label string has been replaced from original as follows:\n")
         for code, text in label.items():
             print(f"  {Fore.RED}{code}{Fore.RESET}: {text}")
         display(stylesheets)
-        #TODO
+        #
+        #TODO: StyleSheet of Table
 
-    #def extractDataSummary(self): # NOTE: Extract Various Metadata from Data:
+    def extractDataSummary(self): # NOTE: Extract Various Metadata from Data:
+        print(f"Number of Rows:                 {Fore.BLUE}{self.data.shape[0]}")
+        print(f"Number of Columns:              {Fore.BLUE}{self.data.shape[1]}")
+        print(f"Name of Columns:                {Fore.BLUE}{self.data.columns}")
+        print(f"Type of Columns:                {Fore.BLUE}{self.data.dtypes}")
+        print(f"Number of Missing Values:       {Fore.RED}{self.data.isnull().values.any()}\n{Fore.BLUE}{self.data.isnull().sum()}")
+        print(f"Shape:                          {Fore.BLUE}{self.data.shape}")
+    
+    def illustrateEDATable(self):
+        print(self.data.describe(include = 'all'))
+        print(self.data.nunique())
+        print(self.data['Gender'].value_counts(normalize = True))
+        print(self.data.mode(numeric_only = True))
+        print(self.data.median(numeric_only = True))
+        print(self.data.max(numeric_only = True))
+        print(self.data.min(numeric_only = True))
+        print(self.data.corr(numeric_only = True))
+        
+        print(self.data.memory_usage(deep = True))
+        print(self.data.memory_usage(deep = True).sum())
+        print(self.data.index)
+        print(self.data.isnull().mean() * 100)
+
+
+
+
+        
 
 if __name__ == "__main__":
     task = Basic()
