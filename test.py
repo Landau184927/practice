@@ -59,7 +59,7 @@ class Basic:
         display(stylesheet)
         #TODO
 
-    def extractDataSummary(self): # NOTE: Extract Various Metadata from Data:
+    #def extractDataSummary(self): # NOTE: Extract Various Metadata from Data:
 
 
     
