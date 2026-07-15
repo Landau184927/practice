@@ -61,24 +61,28 @@ class Basic:
     def extractDataSummary(self): # NOTE: Extract Various Metadata from Data:
         print(f"Number of Rows:                 {Fore.BLUE}{self.data.shape[0]}")
         print(f"Number of Columns:              {Fore.BLUE}{self.data.shape[1]}")
-        print(f"Name of Columns:                {Fore.BLUE}{self.data.columns}")
+        print(f"Name of Columns:                {Fore.BLUE}{list(self.data.columns)}")
         print(f"Type of Columns:                {Fore.BLUE}{self.data.dtypes}")
-        print(f"Number of Missing Values:       {Fore.RED}{self.data.isnull().values.any()}\n{Fore.BLUE}{self.data.isnull().sum()}")
+        print(f"Number of Missing Values:       {Fore.RED}{self.data.isnull().values.any()}\n{Fore.BLUE}{self.data.isnull().sum().sum()}")
         print(f"Shape:                          {Fore.BLUE}{self.data.shape}")
     
     def illustrateEDATable(self):
         print(self.data.describe(include = 'all'))
         print(self.data.nunique())
         print(self.data['Gender'].value_counts(normalize = True))
-        print(self.data.mode(numeric_only = True))
+        print(self.data.mode())
         print(self.data.median(numeric_only = True))
         print(self.data.max(numeric_only = True))
         print(self.data.min(numeric_only = True))
-        print(self.data.corr(numeric_only = True))
+
+        numeric = self.data.select_dtypes(include = "number")
+        if numeric.shape[1] >= 2:
+            print(numeric.corr())
         
+        print(self.data.duplicated().sum())
         print(self.data.memory_usage(deep = True))
         print(self.data.memory_usage(deep = True).sum())
-        print(self.data.index)
+        print(type(self.data.index))
         print(self.data.isnull().mean() * 100)
 
 
