@@ -12,7 +12,7 @@ from sklearn.ensemble        import RandomForestClassifier as RFC
 
 class Basic:
     def __init__(self, URL):
-        init(autoreset = True)
+        init(autoreset = True, strip = False, conver = False)
         self.data = pandas.read_csv(URL)
         self._initialize_()
 
@@ -38,7 +38,7 @@ class Basic:
 
     def setDataFrameStyle(self): # Set the Output Data Frame Style:
         stylesheet = (self.convertLabelsForm().head(10).style.hide(axis = "index"))
-        print(Fore.GREEN + "Notice:", Fore.RESET + "The following shows a sample (10 rows) of BMI data for 500 people.")
+        print(f"The following shows a sample {Fore.Green}(10 rows){Fore.RESET} of BMI data for 500 people.")
         display(stylesheet)
         # [!] Modify the Style
         
