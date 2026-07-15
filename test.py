@@ -37,7 +37,7 @@ class Basic:
 
     def displayDataFrame(self):
         converted = self.convertLabelForm()
-        display(converted.head(10).style.hide(axis = "index")
+        return(converted.head(10).style.hide(axis = "index")
                 .set_properties(**{
                     "background-color": "white",
                     "color"           : "black",
