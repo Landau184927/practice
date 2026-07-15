@@ -33,22 +33,19 @@ class Basic:
             inplace = True
         )
         self.data["Label"] = self.data["Label"].map(label)
-        conversion = self.data
-        return conversion
+        data = self.data
+        return label, data
 
     def setDataFrameStyles(self): # NOTE: Set the Output Data Frame Style
-        conversion = self.convertLabelFormat()
-        stylesheet = (conversion.head(10).style.hide(axis = "index"))
+        label, data = self.convertLabelFormat()
+        stylesheets = (data.head(10).style.hide(axis = "index"))
         # MESSAGE:
         print(f"The following shows a sample {Fore.GREEN}(10 rows){Fore.RESET} of BMI data for 500 people:")
         print(f"Here, each label string has been replaced from original as follows:\n")
-        print(f"    {Fore.RED}0{Fore.RESET}: Extremely Weak")
-        print(f"    {Fore.RED}1{Fore.RESET}: Weak")
-        print(f"    {Fore.RED}2{Fore.RESET}: Normal")
-        print(f"    {Fore.RED}3{Fore.RESET}: Overweight")
-        print(f"    {Fore.RED}4{Fore.RESET}: Obesity")
-        print(f"    {Fore.RED}5{Fore.RESET}: Extreme Obesity")
-        display(stylesheet)
+        for code, text in label.items():
+            print(f"  {Fore.RED}{code}{Fore.RESET}: {text}")
+        print("")
+        display(stylesheets)
         #TODO
 
     #def extractDataSummary(self): # NOTE: Extract Various Metadata from Data:
