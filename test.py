@@ -1,6 +1,7 @@
 # Module Decaration:
 import pandas
 #import matplotlib.pyplot                                   as plt
+from colorama                import Fore, Back, init
 from IPython.display         import display
 from sklearn.metrics         import accuracy_score         as acc
 from sklearn.model_selection import train_test_split       as tts
@@ -9,9 +10,9 @@ from sklearn.neighbors       import KNeighborsClassifier   as KNC
 from sklearn.tree            import DecisionTreeClassifier as DTC
 from sklearn.ensemble        import RandomForestClassifier as RFC
 
-
 class Basic:
     def __init__(self, URL):
+        init(autoreset = True)
         self.data = pandas.read_csv(URL)
         self._initialize_()
 
@@ -47,6 +48,7 @@ class Basic:
                         }])
         )
         # (!) Change the Font
+        print(Fore.GREEN + "Notice:", Fore.RESET + "The following shows a sample (10 rows) of BMI data for 500 people.")
         display(stylesheet)
         
 if __name__ == "__main__":
