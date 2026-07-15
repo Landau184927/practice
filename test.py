@@ -1,6 +1,7 @@
 # Module Decaration:
 import pandas
-import matplotlib.pyplot                                   as plt
+#import matplotlib.pyplot                                   as plt
+from IPython.display         import display
 from sklearn.metrics         import accuracy_score         as acc
 from sklearn.model_selection import train_test_split       as tts
 from sklearn.model_selection import cross_val_score        as cvs
@@ -15,10 +16,45 @@ class Basic:
         self._initialize_()
 
     def _initialize_(self):
-        self.extractDataFile()
+        self.displayDataFrame()
 
-    def extractDataFile(self):
-        self.data
+    def convertLabelForm(self):
+        label = {
+            0: "Extremely Weak",
+            1: "Weak",
+            2: "Normal",
+            3: "Overweight",
+            4: "Obesity",
+            5: "Extreme Obesity",
+        }
+        self.data.rename(
+            columns = {"Index": "Label"},
+            inplace = True
+        )
+        self.data["Label"] = self.data["Label"].map(label)
+        converted = self.data
+        return converted
+
+    def displayDataFrame(self):
+        converted = self.convertLabelForm()
+        display(converted.head(10).style.hide(axis = "index").
+                set_properties(**{
+                    "background-color": "white",
+                    "color"           : "black",
+                    "border"          : "1px solid gray",
+                    "text-align"      : "left",
+                    "font-family"     : "'Sarasa Term SC Nerd', sans-serif"
+                })
+                .set_table_styles([{
+                    "selector"        : "",
+                    "props"           : [ 
+                        ("import", "url('https://cdn.jsdelivr.net/gh/oraant/sarasa-gothic-webfonts@v1.0.0/css/sarasa-term-sc.css')") 
+                ]},{
+                    "selector"        : "th",
+                    "props"           : [
+                        ("text-align", "center"), ("background-color", "black"), ("color", "white"), ("fony-family", "'Sarasa Term SC Nerd', sans-seriff")
+                ]}
+        ]))
         
 
 if __name__ == "__main__":
