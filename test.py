@@ -20,10 +20,9 @@ class Basic:
     def __init__(self):
         init(autoreset = True, strip = False, convert = False)
         self.data = pandas.read_csv("https://raw.githubusercontent.com/chriswmann/datasets/master/500_Person_Gender_Height_Weight_Index.csv")
-        self._initialize_(verbose)
+        self._initialize_()
 
     def _initialize_(self):
-        self.switchDescriptions()
         self.setDataFrameStyles()
 
     def convertLabelFormat(self): # NOTE: Convert Numerical Labels to String Format:
