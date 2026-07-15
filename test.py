@@ -12,6 +12,7 @@ from sklearn.ensemble        import RandomForestClassifier as RFC
 class Basic:
     def __init__(self, URL):
         self.data = pandas.read_csv(URL, index_col = 'Index')
+        self._initialize_()
 
     def _initialize_(self):
         self.extractDataFile()
@@ -20,10 +21,6 @@ class Basic:
         self.data
         
 
-
-
-
-
 if __name__ == "__main__":
     URL = "https://raw.githubusercontent.com/chriswmann/datasets/master/500_Person_Gender_Height_Weight_Index.csv"
-    Basic._initialize_(URL)
+    task = Basic(URL)
