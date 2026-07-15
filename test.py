@@ -13,10 +13,11 @@ from sklearn.ensemble        import RandomForestClassifier as RFC
 
 # region "Utility Class"
 class Utility:
+    @staticmethod
     def parseEntryPointArg():
         parser = argparse.ArgumentParser(description = " ")
         parser.add_argument('verbose', type = int, nargs = '?', default = 1, help = "Set verbosity (0 or 1)")
-        args = parser.parse_args()
+        args, unknown = parser.parse_known_args()
         return args
     
 args = Utility.parseEntryPointArg()
@@ -38,10 +39,10 @@ class Basic:
             raise TypeError(f"Invalid system argument: {verbose}")
             sys.exit(1)
         match verbose:
-            case True:
+            case (1, True) :
                 self.switchA = True
-            case False:
-                pass
+            case _:
+                self.switchA = False
         return
     
     def convertLabelFormat(self): # NOTE: Convert Numerical Labels to String Format:
