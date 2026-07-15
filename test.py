@@ -1,5 +1,5 @@
 # Module Decaration:
-import pandas
+import pandas, sys
 #import matplotlib.pyplot                                  as plt
 from colorama                import Fore, init
 from IPython.display         import display
@@ -11,13 +11,26 @@ from sklearn.tree            import DecisionTreeClassifier as DTC
 from sklearn.ensemble        import RandomForestClassifier as RFC
 
 class Basic:
-    def __init__(self, URL: str):
+    def __init__(self, URL: str, verbose: bool):
         init(autoreset = True, strip = False, convert = False)
-        self.data = pandas.read_csv(URL)
+        self.switchA = False
+        self.data    = pandas.read_csv(URL)
         self._initialize_()
 
     def _initialize_(self):
+        self.switchDescriptions()
         self.setDataFrameStyles()
+
+    def switchDescriptions(self, verbose): # NOTE: Switch the Verbosity of Explanation:
+        if not isinstance(verbose, (bool, int)):
+            raise TypeError(f"Invalid system argument: {verbose}")
+            sys.exit(1)
+        match verbose:
+            case True:
+                self.switchA = True
+            case False:
+                pass
+        return
     
     def convertLabelFormat(self): # NOTE: Convert Numerical Labels to String Format:
         label = {
@@ -32,7 +45,11 @@ class Basic:
             columns = {"Index": "Label"},
             inplace = True
         )
-        self.data["Label"] = self.data["Label"].map(label)
+        match self.switchA:
+            case True:
+                self.data["Label"] = self.data["Label"].map(label)
+            case False:
+                pass
         data = self.data
         return label, data
 
@@ -40,19 +57,21 @@ class Basic:
         label, data = self.convertLabelFormat()
         stylesheets = (data.head(10).style.hide(axis = "index"))
         # MESSAGE:
-        print(f"The following shows a sample {Fore.GREEN}(10 rows){Fore.RESET} of BMI data for 500 people:")
-        print(f"Here, each label string has been replaced from original as follows:\n")
-        for code, text in label.items():
-            print(f"  {Fore.RED}{code}{Fore.RESET}: {text}")
-        print("")
+        print(f"The following shows a sample {Fore.GREEN}(10 rows){Fore.RESET} of BMI data for 500 people.")
+        match self.switchA:
+            case True:
+                print(f"Here, each label string has been replaced from original as follows:\n")
+                for code, text in label.items():
+                    print(f"  {Fore.RED}{code}{Fore.RESET}: {text}")
+            case False:
+                pass
         display(stylesheets)
         #TODO
 
     #def extractDataSummary(self): # NOTE: Extract Various Metadata from Data:
 
 
-    
-        
+
 if __name__ == "__main__":
     URL = "https://raw.githubusercontent.com/chriswmann/datasets/master/500_Person_Gender_Height_Weight_Index.csv"
-    task = Basic(URL)
+    task = Basic(URL, 1)
