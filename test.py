@@ -1,5 +1,5 @@
-# Module Decaration:
-import pandas, sys
+# region "Module Decaration"
+import pandas, sys, argparse
 #import matplotlib.pyplot                                  as plt
 from colorama                import Fore, init
 from IPython.display         import display
@@ -9,12 +9,24 @@ from sklearn.model_selection import cross_val_score        as cvs
 from sklearn.neighbors       import KNeighborsClassifier   as KNC
 from sklearn.tree            import DecisionTreeClassifier as DTC
 from sklearn.ensemble        import RandomForestClassifier as RFC
+# endregion
+
+# region "Utility Class"
+class Utility:
+    def parseEntryPointArg():
+        parser = argparse.ArgumentParser(description = " ")
+        parser.add_argument('verbose', type = int, nargs = '?', default = 1, help = "Set verbosity (0 or 1)")
+        args = parser.parse_args()
+        return args
+    
+args = Utility.parseEntryPointArg()
+# endregion
 
 class Basic:
-    def __init__(self, URL: str, verbose: bool):
+    def __init__(self, verbose: bool):
         init(autoreset = True, strip = False, convert = False)
         self.switchA = False
-        self.data    = pandas.read_csv(URL)
+        self.data    = pandas.read_csv("https://raw.githubusercontent.com/chriswmann/datasets/master/500_Person_Gender_Height_Weight_Index.csv")
         self._initialize_(verbose)
 
     def _initialize_(self, verbose):
@@ -70,8 +82,7 @@ class Basic:
 
     #def extractDataSummary(self): # NOTE: Extract Various Metadata from Data:
 
-
-
 if __name__ == "__main__":
-    URL = "https://raw.githubusercontent.com/chriswmann/datasets/master/500_Person_Gender_Height_Weight_Index.csv"
-    task = Basic(URL, 1)
+    task = Basic(args)
+
+    
