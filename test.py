@@ -83,6 +83,6 @@ class Basic:
     #def extractDataSummary(self): # NOTE: Extract Various Metadata from Data:
 
 if __name__ == "__main__":
-    task = Basic(args)
+    task = Basic(args.verbose)
 
     
