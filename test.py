@@ -38,7 +38,7 @@ class Basic:
 
     def setDataFrameStyle(self): # Set the Output Data Frame Style:
         stylesheet = (self.convertLabelsForm().head(10).style.hide(axis = "index"))
-        print(f"The following shows a sample {Fore.Green}(10 rows){Fore.RESET} of BMI data for 500 people.")
+        print(f"The following shows a sample {Fore.GREEN}(10 rows){Fore.RESET} of BMI data for 500 people.")
         display(stylesheet)
         # [!] Modify the Style
         
