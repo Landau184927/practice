@@ -38,11 +38,7 @@ class Basic:
             columns = {"Index": "Label"},
             inplace = True
         )
-        match self.switchA:
-            case True:
-                self.data["Label"] = self.data["Label"].map(label)
-            case False:
-                pass
+        self.data["Label"] = self.data["Label"].map(label)
         data = self.data
         return label, data
 
